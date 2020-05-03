@@ -1,0 +1,18 @@
+<mat-card>
+  <mat-card-header>
+    <div mat-card-avatar class="header-image" [ngStyle]="{background:'url(' + urlImgHeader + ') center'}"></div>
+    <mat-card-title *ngIf="coursDefined">{{cours.subject}}</mat-card-title>
+    <mat-card-subtitle *ngIf="coursDefined">{{cours.teacher}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content *ngIf="dateDefined">
+    <p> Le {{date.toLocaleDateString("fr-FR")}} à 
+      {{date.getHours()}}H
+    </p>
+    <button *ngIf="!isRegistered" mat-button color="primary" (click)="register(cours._id)">
+      Inscrire votre classe
+    </button>
+    <button *ngIf="isRegistered" mat-button color="primary" (click)="unregister(cours._id)">
+      Désinscrire votre classe
+    </button>
+  </mat-card-content>
+</mat-card>

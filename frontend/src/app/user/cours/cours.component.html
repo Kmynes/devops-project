@@ -1,0 +1,48 @@
+<h2>Les cours auxquelles vous êtes inscrits</h2>
+<mat-form-field>
+    <mat-label>Filtrez vos cours</mat-label>
+    <mat-select multiple [(ngModel)]="userCoursesCurrentFilter" (selectionChange)="filterUserCourses($event)">
+      <mat-option *ngFor="let cours of courses" [value]="cours">{{cours}}</mat-option>
+    </mat-select>
+</mat-form-field>
+
+<p class="right">{{userCoursesFiltered.length}} cours</p>
+<div *ngFor="let cours of userCoursesFiltered; let i = index">
+    <div *ngIf="i % 2 === 0">
+        <div class="row">
+            <div class="col-md-6">
+                <app-card-cours @fadeIn [cours]="userCoursesFiltered[i]" [isRegistered]="true" [unregister]="unregister.bind(this)"></app-card-cours>
+            </div>
+            <div class="col-md-6" *ngIf="i < userCoursesFiltered.length - 1">
+                <app-card-cours @fadeIn [cours]="userCoursesFiltered[i + 1]" [isRegistered]="true" [unregister]="unregister.bind(this)"></app-card-cours>
+            </div>
+        </div>
+        <hr/>
+    </div>
+</div>
+
+<p *ngIf="userCoursesFiltered.length === 0">Vous n'êtes inscrit à aucun cours pour ce filtre</p>
+
+<h2>Les autres cours</h2>
+<mat-form-field>
+    <mat-label>Filtrez les autres cours</mat-label>
+    <mat-select multiple [(ngModel)]="otherCoursesCurrentFilter" (selectionChange)="filterOtherCourses($event)">
+      <mat-option *ngFor="let cours of courses" [value]="cours">{{cours}}</mat-option>
+    </mat-select>
+</mat-form-field>
+
+<p class="right">{{otherCoursesFiltered.length}} cours</p>
+<div *ngFor="let cours of otherCoursesFiltered; let i = index">
+    <div *ngIf="i % 2 === 0">
+        <div class="row">
+            <div class="col-md-6" >
+                <app-card-cours @fadeIn [cours]="otherCoursesFiltered[i]" [isRegistered]="false" [register]="register.bind(this)"></app-card-cours>
+            </div>
+            <div class="col-md-6" *ngIf="i < otherCoursesFiltered.length - 1">
+                <app-card-cours @fadeIn [cours]="otherCoursesFiltered[i + 1]" [isRegistered]="false" [register]="register.bind(this)"></app-card-cours>
+            </div>
+        </div>
+        <hr/>
+    </div>
+</div>
+<p *ngIf="otherCoursesFiltered.length === 0">Aucun cours pour ce filtre</p>
