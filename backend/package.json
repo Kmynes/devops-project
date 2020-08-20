@@ -31,7 +31,7 @@
     "@types/helmet": "0.0.44",
     "@types/jsonwebtoken": "^8.3.4",
     "@types/mongoose": "^5.5.34",
-    "bcrypt": "^3.0.6",
+    "bcrypt": "^5.0.0",
     "class-transformer": "^0.2.3",
     "class-validator": "^0.11.0",
     "compression": "^1.7.4",
